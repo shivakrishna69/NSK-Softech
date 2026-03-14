@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services – NSK Soft Tech</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.page-hero { padding:7rem 0 5rem; text-align:center; background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,100,255,0.08) 0%, transparent 60%); border-bottom:1px solid var(--border); }
+.page-hero .label { justify-content:center; }
+.page-hero p { max-width:580px; margin:1rem auto 0; font-size:1.1rem; }
+
+.services-detail { display:flex; flex-direction:column; gap:0; }
+.service-block {
+  display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;
+  padding:5rem 0; border-bottom:1px solid var(--border);
+}
+.service-block:nth-child(even) .service-visual { order:-1; }
+.service-num { font-family:'Manrope',sans-serif; font-size:5rem; font-weight:800; color:var(--blue); opacity:0.08; line-height:1; margin-bottom:-1rem; display:block; }
+.service-block h3 { font-size:1.9rem; margin-bottom:1rem; }
+.service-block p { margin-bottom:1.2rem; }
+.service-features { display:flex; flex-direction:column; gap:0.6rem; margin-bottom:1.5rem; }
+.service-feature { display:flex; align-items:flex-start; gap:0.6rem; font-size:0.9rem; }
+.service-feature::before { content:'✓'; color:var(--blue); font-weight:700; flex-shrink:0; margin-top:0.1rem; }
+.service-visual {
+  border-radius:var(--radius); border:1px solid var(--border);
+  background:var(--surface); aspect-ratio:4/3;
+  display:flex; align-items:center; justify-content:center;
+  font-size:6rem; position:relative; overflow:hidden;
+}
+.service-visual::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(circle at 50% 50%, rgba(0,148,255,0.06) 0%, transparent 70%);
+}
+.service-tags { display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:1rem; }
+
+.tech-section { background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 0; }
+.tech-logos { display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:2.5rem; }
+.tech-logo-pill {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:100px; padding:0.5rem 1.2rem;
+  font-size:0.85rem; font-weight:600; color:var(--text-muted);
+  transition:all var(--transition);
+}
+.tech-logo-pill:hover { border-color:var(--border-glow); color:var(--blue); }
+
+.process-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; margin-top:3rem; position:relative; }
+.process-steps::before { content:''; position:absolute; top:28px; left:10%; right:10%; height:1px; background:linear-gradient(90deg,transparent,var(--border),var(--border),transparent); }
+.process-step { text-align:center; }
+.step-num { width:56px; height:56px; border-radius:50%; background:var(--surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; font-family:'Manrope',sans-serif; font-weight:800; font-size:1rem; color:var(--blue); position:relative; z-index:1; transition:all var(--transition); }
+.process-step:hover .step-num { background:var(--blue); color:#fff; border-color:var(--blue); }
+.step-title { font-size:0.88rem; font-weight:700; margin-bottom:0.3rem; }
+.step-desc { font-size:0.78rem; color:var(--text-faint); }
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">NSK <span>SOFT</span> TECH</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="projects.html">Projects</a></li><li><a href="pricing.html">Pricing</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li>
+    <li class="nav-cta-wrap"><a href="contact.html" class="btn btn-primary nav-cta">Get a Free Quote</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.5rem;">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fas fa-moon" id="themeIcon"></i></button>
+    <button class="nav-mobile-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="projects.html">Projects</a><a href="pricing.html">Pricing</a>
+  <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</div>
+<main>
+
+<div class="page-hero">
+  <div class="container anim-up">
+    <div class="label">What We Do</div>
+    <h1>Services that scale<br>with your ambition.</h1>
+    <p>From idea to production — end-to-end software services that cover every phase of the digital product lifecycle.</p>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="services-detail">
+
+      <!-- WEB DEV -->
+      <div class="service-block reveal" id="web">
+        <div>
+          <span class="service-num">01</span>
+          <h3>Web Development</h3>
+          <p>We build web applications that are fast, scalable, and a joy to use. From landing pages to complex enterprise platforms — every pixel and every function is crafted with care.</p>
+          <div class="service-features">
+            <div class="service-feature">Custom web apps & enterprise portals</div>
+            <div class="service-feature">E-commerce platforms (Shopify, custom)</div>
+            <div class="service-feature">Progressive Web Apps (PWA)</div>
+            <div class="service-feature">CMS development (WordPress, Headless)</div>
+            <div class="service-feature">API design & third-party integrations</div>
+            <div class="service-feature">Performance optimization & Core Web Vitals</div>
+          </div>
+          <div class="service-tags">
+            <span class="tech-pill">React</span><span class="tech-pill">Next.js</span>
+            <span class="tech-pill">Node.js</span><span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">TypeScript</span>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="margin-top:1.5rem">Start a Web Project →</a>
+        </div>
+        <div class="service-visual">💻</div>
+      </div>
+
+      <!-- MOBILE -->
+      <div class="service-block reveal" id="mobile">
+        <div>
+          <span class="service-num">02</span>
+          <h3>Mobile Development</h3>
+          <p>We create mobile experiences that users love. Native-quality apps for iOS and Android, built with modern cross-platform frameworks for speed and efficiency without compromise.</p>
+          <div class="service-features">
+            <div class="service-feature">iOS & Android native development</div>
+            <div class="service-feature">React Native cross-platform apps</div>
+            <div class="service-feature">App Store & Play Store optimization</div>
+            <div class="service-feature">Push notifications & real-time features</div>
+            <div class="service-feature">Mobile backend & REST/GraphQL APIs</div>
+            <div class="service-feature">App maintenance & performance tuning</div>
+          </div>
+          <div class="service-tags">
+            <span class="tech-pill">React Native</span><span class="tech-pill">Swift</span>
+            <span class="tech-pill">Kotlin</span><span class="tech-pill">Firebase</span>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="margin-top:1.5rem">Build Your App →</a>
+        </div>
+        <div class="service-visual">📱</div>
+      </div>
+
+      <!-- CYBERSECURITY -->
+      <div class="service-block reveal" id="security">
+        <div>
+          <span class="service-num">03</span>
+          <h3>Cybersecurity</h3>
+          <p>In a world of growing threats, we provide advanced protection for your data and systems. Our security team helps you identify vulnerabilities before attackers do.</p>
+          <div class="service-features">
+            <div class="service-feature">Penetration testing & ethical hacking</div>
+            <div class="service-feature">Security architecture & code review</div>
+            <div class="service-feature">Compliance (GDPR, ISO 27001, SOC 2)</div>
+            <div class="service-feature">24/7 threat monitoring & incident response</div>
+            <div class="service-feature">Cloud security & IAM configuration</div>
+            <div class="service-feature">Employee security awareness training</div>
+          </div>
+          <div class="service-tags">
+            <span class="tech-pill">OWASP</span><span class="tech-pill">Splunk</span>
+            <span class="tech-pill">Nessus</span><span class="tech-pill">Zero Trust</span>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="margin-top:1.5rem">Secure Your Business →</a>
+        </div>
+        <div class="service-visual" style="background:linear-gradient(135deg,#0a1628,#061220)">🛡️</div>
+      </div>
+
+      <!-- DIGITAL MARKETING -->
+      <div class="service-block reveal" id="marketing">
+        <div>
+          <span class="service-num">04</span>
+          <h3>Digital Marketing</h3>
+          <p>Data-driven marketing strategies that put your brand in front of the right audience. We turn clicks into customers and traffic into revenue.</p>
+          <div class="service-features">
+            <div class="service-feature">Technical SEO & content strategy</div>
+            <div class="service-feature">Paid search & social media advertising</div>
+            <div class="service-feature">Conversion rate optimization (CRO)</div>
+            <div class="service-feature">Email marketing & automation</div>
+            <div class="service-feature">Analytics dashboards & attribution</div>
+            <div class="service-feature">Brand positioning & messaging strategy</div>
+          </div>
+          <div class="service-tags">
+            <span class="tech-pill">Google Ads</span><span class="tech-pill">Meta Ads</span>
+            <span class="tech-pill">GA4</span><span class="tech-pill">HubSpot</span>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="margin-top:1.5rem">Grow Your Reach →</a>
+        </div>
+        <div class="service-visual">📊</div>
+      </div>
+
+      <!-- CLOUD & DEVOPS -->
+      <div class="service-block reveal" id="cloud">
+        <div>
+          <span class="service-num">05</span>
+          <h3>Cloud & DevOps</h3>
+          <p>Modern infrastructure that scales with you. We design, implement, and manage cloud environments that are reliable, cost-efficient, and production-hardened.</p>
+          <div class="service-features">
+            <div class="service-feature">AWS, Azure & GCP architecture design</div>
+            <div class="service-feature">CI/CD pipeline implementation</div>
+            <div class="service-feature">Kubernetes & Docker containerization</div>
+            <div class="service-feature">Infrastructure as Code (Terraform)</div>
+            <div class="service-feature">Cloud cost optimization & FinOps</div>
+            <div class="service-feature">Legacy system migration to cloud</div>
+          </div>
+          <div class="service-tags">
+            <span class="tech-pill">AWS</span><span class="tech-pill">Kubernetes</span>
+            <span class="tech-pill">Terraform</span><span class="tech-pill">GitHub Actions</span>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="margin-top:1.5rem">Modernize Your Infra →</a>
+        </div>
+        <div class="service-visual" style="background:linear-gradient(135deg,#0a1628,#0f1c0a)">☁️</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<div class="tech-section">
+  <div class="container">
+    <div class="label reveal">Our Stack</div>
+    <h2 class="reveal">Technologies we master.</h2>
+    <div class="tech-logos reveal">
+      <span class="tech-logo-pill">React</span><span class="tech-logo-pill">Next.js</span>
+      <span class="tech-logo-pill">Vue.js</span><span class="tech-logo-pill">TypeScript</span>
+      <span class="tech-logo-pill">Node.js</span><span class="tech-logo-pill">Python</span>
+      <span class="tech-logo-pill">Java</span><span class="tech-logo-pill">Go</span>
+      <span class="tech-logo-pill">React Native</span><span class="tech-logo-pill">Swift</span>
+      <span class="tech-logo-pill">Kotlin</span><span class="tech-logo-pill">Flutter</span>
+      <span class="tech-logo-pill">AWS</span><span class="tech-logo-pill">Google Cloud</span>
+      <span class="tech-logo-pill">Azure</span><span class="tech-logo-pill">Kubernetes</span>
+      <span class="tech-logo-pill">Docker</span><span class="tech-logo-pill">Terraform</span>
+      <span class="tech-logo-pill">PostgreSQL</span><span class="tech-logo-pill">MongoDB</span>
+      <span class="tech-logo-pill">Redis</span><span class="tech-logo-pill">GraphQL</span>
+      <span class="tech-logo-pill">TensorFlow</span><span class="tech-logo-pill">OpenAI API</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section>
+  <div class="container">
+    <div class="label reveal">How We Work</div>
+    <h2 class="reveal">Our proven process.</h2>
+    <div class="process-steps">
+      <div class="process-step reveal"><div class="step-num">01</div><div class="step-title">Discovery</div><div class="step-desc">Deep-dive into your business, goals, and users.</div></div>
+      <div class="process-step reveal"><div class="step-num">02</div><div class="step-title">Strategy</div><div class="step-desc">Architecture, tech stack, and roadmap definition.</div></div>
+      <div class="process-step reveal"><div class="step-num">03</div><div class="step-title">Design</div><div class="step-desc">Wireframes, prototypes, and UI system creation.</div></div>
+      <div class="process-step reveal"><div class="step-num">04</div><div class="step-title">Build</div><div class="step-desc">Agile sprints with weekly demos and reviews.</div></div>
+      <div class="process-step reveal"><div class="step-num">05</div><div class="step-title">Launch & Grow</div><div class="step-desc">Deploy, monitor, iterate, and scale with you.</div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="brand">NSK <span>SOFT</span> TECH</div><p>End-to-end digital solutions for businesses worldwide.</p><div class="social-links"><a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a><a href="#" class="social-btn"><i class="fab fa-x-twitter"></i></a><a href="#" class="social-btn"><i class="fab fa-github"></i></a></div></div>
+    <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="projects.html">Projects</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="#web">Web Development</a></li><li><a href="#mobile">Mobile Apps</a></li><li><a href="#security">Cybersecurity</a></li><li><a href="#cloud">Cloud & DevOps</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:hello@nsksofttech.com">hello@nsksofttech.com</a></li><li><a href="pricing.html">View Pricing</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2024 NSK Soft Tech. All rights reserved.</span></div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

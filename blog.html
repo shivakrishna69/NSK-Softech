@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog – NSK Soft Tech</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.page-hero { padding:7rem 0 5rem; text-align:center; background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,100,255,0.08) 0%, transparent 60%); border-bottom:1px solid var(--border); }
+.page-hero .label { justify-content:center; }
+.page-hero p { max-width:520px; margin:1rem auto 0; font-size:1.05rem; }
+
+.blog-filter { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:3rem; }
+.blog-filter button {
+  padding:0.4rem 1rem; border-radius:100px; cursor:pointer;
+  background:transparent; border:1px solid var(--border);
+  color:var(--text-muted); font-size:0.83rem; font-weight:500;
+  font-family:'Poppins',sans-serif; transition:all var(--transition);
+}
+.blog-filter button.active, .blog-filter button:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+
+/* FEATURED POST */
+.featured-post {
+  display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); overflow:hidden; margin-bottom:3rem;
+  transition:border-color var(--transition);
+}
+.featured-post:hover { border-color:var(--border-glow); }
+.fp-image {
+  height:320px; background:linear-gradient(135deg,#0a1628,#1a2a4a);
+  display:flex; align-items:center; justify-content:center; font-size:6rem;
+}
+.fp-body { padding:2.5rem; }
+.fp-category { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--blue); margin-bottom:0.6rem; }
+.fp-title { font-family:'Manrope',sans-serif; font-size:1.7rem; font-weight:700; margin-bottom:0.8rem; line-height:1.2; }
+.fp-excerpt { font-size:0.92rem; color:var(--text-muted); line-height:1.7; margin-bottom:1.2rem; }
+.fp-meta { display:flex; align-items:center; gap:1rem; font-size:0.78rem; color:var(--text-faint); }
+
+/* POSTS GRID */
+.posts-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.post-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); overflow:hidden;
+  transition:all var(--transition); text-decoration:none; display:block;
+  cursor:pointer;
+}
+.post-card:hover { border-color:var(--border-glow); transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,0.3); }
+.post-img {
+  height:160px; display:flex; align-items:center; justify-content:center;
+  font-size:3.5rem; position:relative;
+}
+.post-body { padding:1.4rem; }
+.post-cat { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--blue); margin-bottom:0.4rem; }
+.post-title { font-family:'Manrope',sans-serif; font-size:1.05rem; font-weight:700; margin-bottom:0.5rem; line-height:1.3; }
+.post-excerpt { font-size:0.83rem; color:var(--text-muted); line-height:1.6; margin-bottom:0.8rem; }
+.post-meta { display:flex; align-items:center; gap:0.8rem; font-size:0.75rem; color:var(--text-faint); flex-wrap:wrap; }
+.post-date { }
+.post-read { color:var(--blue); font-weight:600; }
+
+/* NEWSLETTER */
+.newsletter-box {
+  background:linear-gradient(135deg, rgba(0,148,255,0.08), rgba(0,212,255,0.04));
+  border:1px solid rgba(0,148,255,0.2); border-radius:var(--radius);
+  padding:3rem; text-align:center; margin-top:4rem;
+}
+.newsletter-box h3 { font-size:1.5rem; margin-bottom:0.6rem; }
+.newsletter-box p { max-width:420px; margin:0 auto 1.5rem; font-size:0.92rem; }
+.newsletter-form { display:flex; gap:0.8rem; max-width:440px; margin:0 auto; }
+.newsletter-form input {
+  flex:1; background:var(--surface2); border:1px solid var(--border);
+  border-radius:var(--radius-sm); padding:0.75rem 1rem;
+  color:var(--text); font-family:'Poppins',sans-serif; outline:none;
+  transition:border-color var(--transition);
+}
+.newsletter-form input:focus { border-color:var(--blue); }
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">NSK <span>SOFT</span> TECH</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li class="nav-cta-wrap"><a href="contact.html" class="btn btn-primary nav-cta">Get a Free Quote</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.5rem;">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fas fa-moon" id="themeIcon"></i></button>
+    <button class="nav-mobile-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="projects.html">Projects</a><a href="pricing.html">Pricing</a>
+  <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</div>
+<main>
+
+<div class="page-hero">
+  <div class="container anim-up">
+    <div class="label">Knowledge Hub</div>
+    <h1>Insights & ideas<br>from our team.</h1>
+    <p>Stay up to date with the latest trends and insights in technology with our informative blog.</p>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="blog-filter reveal">
+      <button class="active">All Posts</button>
+      <button>Software Dev</button>
+      <button>Cybersecurity</button>
+      <button>Mobile</button>
+      <button>Cloud & DevOps</button>
+      <button>Digital Marketing</button>
+      <button>AI & ML</button>
+    </div>
+
+    <!-- FEATURED -->
+    <div class="featured-post reveal">
+      <div class="fp-image" style="background:linear-gradient(135deg,#060d1a,#102040)">☁️</div>
+      <div class="fp-body">
+        <div class="fp-category">Cloud Computing · Featured</div>
+        <div class="fp-title">Cloud Computing Is Essential for Your Business in 2025</div>
+        <div class="fp-excerpt">Cloud computing has shifted from a competitive advantage to a business necessity. We explore why businesses of all sizes are migrating their infrastructure — and how to start the journey without breaking the bank.</div>
+        <div class="fp-meta">
+          <span>by Sita Reddy</span>
+          <span>March 1, 2025</span>
+          <span>8 min read</span>
+        </div>
+        <a href="#" class="btn btn-primary" style="margin-top:1.2rem">Read Article →</a>
+      </div>
+    </div>
+
+    <!-- POSTS -->
+    <div class="posts-grid">
+
+      <div class="post-card reveal">
+        <div class="post-img" style="background:linear-gradient(135deg,#0a1020,#162030)">🛡️</div>
+        <div class="post-body">
+          <div class="post-cat">Cybersecurity</div>
+          <div class="post-title">How to Protect Your Business from Cybersecurity Threats in 2025</div>
+          <div class="post-excerpt">The threat landscape is evolving faster than ever. Here are the 5 most critical steps every business must take to protect themselves from modern attacks.</div>
+          <div class="post-meta"><span class="post-date">Feb 15, 2025</span><span class="post-read">6 min read</span></div>
+        </div>
+      </div>
+
+      <div class="post-card reveal">
+        <div class="post-img" style="background:linear-gradient(135deg,#0f1a0a,#1a2a10)">⚡</div>
+        <div class="post-body">
+          <div class="post-cat">Software Dev</div>
+          <div class="post-title">5 Ways Software Development Can Boost Your Business Faster Than Ever</div>
+          <div class="post-excerpt">Custom software isn't just for enterprises anymore. We break down exactly how a well-built product can accelerate your revenue and customer acquisition.</div>
+          <div class="post-meta"><span class="post-date">Feb 20, 2025</span><span class="post-read">5 min read</span></div>
+        </div>
+      </div>
+
+      <div class="post-card reveal">
+        <div class="post-img" style="background:linear-gradient(135deg,#1a0a00,#2a1500)">🤖</div>
+        <div class="post-body">
+          <div class="post-cat">AI & ML</div>
+          <div class="post-title">How We Built AI-Powered Shelf Analytics for Captana</div>
+          <div class="post-excerpt">A deep dive into the architecture behind Captana's real-time computer vision system — from edge inference to cloud dashboards.</div>
+          <div class="post-meta"><span class="post-date">Jan 28, 2025</span><span class="post-read">10 min read</span></div>
+        </div>
+      </div>
+
+      <div class="post-card reveal">
+        <div class="post-img" style="background:linear-gradient(135deg,#0d0f1a,#1a1030)">📱</div>
+        <div class="post-body">
+          <div class="post-cat">Mobile Development</div>
+          <div class="post-title">React Native vs. Flutter in 2025: Which Should You Choose?</div>
+          <div class="post-excerpt">Our engineering team breaks down the real-world tradeoffs between the two leading cross-platform frameworks based on 3 years of production experience.</div>
+          <div class="post-meta"><span class="post-date">Jan 10, 2025</span><span class="post-read">7 min read</span></div>
+        </div>
+      </div>
+
+      <div class="post-card reveal">
+        <div class="post-img" style="background:linear-gradient(135deg,#0a1420,#0f2030)">🔒</div>
+        <div class="post-body">
+          <div class="post-cat">Cybersecurity</div>
+          <div class="post-title">Zero Trust Architecture: Why Perimeter Security is Dead</div>
+          <div class="post-excerpt">The traditional castle-and-moat security model no longer works in a cloud-first, remote-work world. Here's how to implement Zero Trust in practice.</div>
+          <div class="post-meta"><span class="post-date">Dec 20, 2024</span><span class="post-read">9 min read</span></div>
+        </div>
+      </div>
+
+      <div class="post-card reveal">
+        <div class="post-img" style="background:linear-gradient(135deg,#100a1a,#201030)">📊</div>
+        <div class="post-body">
+          <div class="post-cat">Digital Marketing</div>
+          <div class="post-title">The B2B Marketing Stack That Actually Converts in 2025</div>
+          <div class="post-excerpt">We analyzed 200+ B2B campaigns to find the tools and tactics that consistently deliver the highest ROI for technology companies and SaaS products.</div>
+          <div class="post-meta"><span class="post-date">Dec 5, 2024</span><span class="post-read">6 min read</span></div>
+        </div>
+      </div>
+
+      <div class="post-card reveal">
+        <div class="post-img" style="background:linear-gradient(135deg,#0a1a0a,#102010)">🌿</div>
+        <div class="post-body">
+          <div class="post-cat">Cloud & DevOps</div>
+          <div class="post-title">Cut Your AWS Bill by 40%: A Practical FinOps Guide</div>
+          <div class="post-excerpt">Cloud costs can spiral out of control. Here are the exact steps we took to reduce infrastructure costs by 40% for a Series B startup without sacrificing performance.</div>
+          <div class="post-meta"><span class="post-date">Nov 18, 2024</span><span class="post-read">8 min read</span></div>
+        </div>
+      </div>
+
+      <div class="post-card reveal">
+        <div class="post-img" style="background:linear-gradient(135deg,#1a0a0a,#2a1010)">🗄️</div>
+        <div class="post-body">
+          <div class="post-cat">Software Dev</div>
+          <div class="post-title">Choosing the Right Database in 2025: PostgreSQL vs. MongoDB vs. Redis</div>
+          <div class="post-excerpt">A practical, no-nonsense guide to database selection for modern web apps. We cover the tradeoffs, use cases, and our real-world recommendations.</div>
+          <div class="post-meta"><span class="post-date">Nov 5, 2024</span><span class="post-read">7 min read</span></div>
+        </div>
+      </div>
+
+      <div class="post-card reveal">
+        <div class="post-img" style="background:linear-gradient(135deg,#0a0a1a,#10102a)">🎨</div>
+        <div class="post-body">
+          <div class="post-cat">Design & UX</div>
+          <div class="post-title">Why Great UX is Your Best Marketing Investment</div>
+          <div class="post-excerpt">Companies that invest in design outperform the market by 228%. Here's why UX is no longer a nice-to-have — and how to measure its business impact.</div>
+          <div class="post-meta"><span class="post-date">Oct 22, 2024</span><span class="post-read">5 min read</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="newsletter-box reveal">
+      <div class="label" style="justify-content:center">Stay Updated</div>
+      <h3>Get our best insights in your inbox.</h3>
+      <p>Weekly articles on software development, cybersecurity, cloud, and digital marketing. No spam, ever. Unsubscribe anytime.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="your@email.com">
+        <button class="btn btn-primary" onclick="this.textContent='Subscribed ✓';this.disabled=true;this.style.background='var(--green)'">Subscribe</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="brand">NSK <span>SOFT</span> TECH</div><p>Technology insights from the team building the future.</p><div class="social-links"><a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a><a href="#" class="social-btn"><i class="fab fa-x-twitter"></i></a><a href="#" class="social-btn"><i class="fab fa-github"></i></a></div></div>
+    <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Categories</h5><ul><li><a href="#">Software Dev</a></li><li><a href="#">Cybersecurity</a></li><li><a href="#">Cloud</a></li><li><a href="#">Marketing</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:hello@nsksofttech.com">hello@nsksofttech.com</a></li><li><a href="pricing.html">View Pricing</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2024 NSK Soft Tech. All rights reserved.</span></div>
+</footer>
+<script src="main.js"></script>
+<script>
+document.querySelectorAll('.blog-filter button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.blog-filter button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

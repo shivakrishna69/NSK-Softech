@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing – NSK Soft Tech</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.page-hero { padding:7rem 0 5rem; text-align:center; background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,100,255,0.08) 0%, transparent 60%); border-bottom:1px solid var(--border); }
+.page-hero .label { justify-content:center; }
+.page-hero p { max-width:520px; margin:1rem auto 0; font-size:1.05rem; }
+
+.billing-toggle { display:flex; align-items:center; gap:0.8rem; justify-content:center; margin-bottom:3rem; }
+.toggle-label { font-size:0.88rem; font-weight:600; }
+.toggle-track {
+  width:48px; height:26px; border-radius:13px;
+  background:var(--surface); border:1.5px solid var(--border);
+  cursor:pointer; position:relative; transition:background var(--transition);
+}
+.toggle-track.active { background:var(--blue); border-color:var(--blue); }
+.toggle-thumb { width:18px; height:18px; border-radius:50%; background:#fff; position:absolute; top:3px; left:3px; transition:left var(--transition); }
+.toggle-track.active .toggle-thumb { left:23px; }
+.save-badge { background:rgba(0,245,160,0.12); border:1px solid rgba(0,245,160,0.25); color:var(--green); font-size:0.72rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:100px; }
+
+.pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.pricing-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:2.2rem; position:relative;
+  transition:all var(--transition); display:flex; flex-direction:column;
+}
+.pricing-card.popular {
+  border-color:var(--blue); background:linear-gradient(160deg, rgba(0,148,255,0.06), var(--surface));
+  box-shadow:0 0 60px rgba(0,148,255,0.12);
+}
+.popular-badge {
+  position:absolute; top:-1px; left:50%; transform:translateX(-50%);
+  background:var(--blue); color:#fff;
+  font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;
+  padding:0.25rem 1rem; border-radius:0 0 8px 8px;
+}
+.pc-name { font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:0.5rem; }
+.pc-price { font-family:'Manrope',sans-serif; font-size:3rem; font-weight:800; line-height:1; margin-bottom:0.3rem; }
+.pc-price sup { font-size:1.2rem; vertical-align:top; margin-top:0.5rem; margin-right:0.1rem; }
+.pc-price small { font-size:0.85rem; font-family:'Poppins',sans-serif; font-weight:400; color:var(--text-muted); }
+.pc-desc { font-size:0.87rem; color:var(--text-muted); margin-bottom:1.5rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border); }
+.pc-features { display:flex; flex-direction:column; gap:0.65rem; flex:1; margin-bottom:2rem; }
+.pc-feature { display:flex; align-items:flex-start; gap:0.6rem; font-size:0.88rem; }
+.pc-feature.check::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; }
+.pc-feature.cross { color:var(--text-faint); }
+.pc-feature.cross::before { content:'✕'; color:var(--text-faint); flex-shrink:0; }
+
+.custom-section { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:3rem; text-align:center; margin-top:2rem; }
+.custom-section h3 { font-size:1.6rem; margin-bottom:0.8rem; }
+.custom-section p { max-width:480px; margin:0 auto 1.5rem; }
+.custom-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+.faq-list { display:flex; flex-direction:column; gap:0; margin-top:3rem; }
+.faq-item { border-bottom:1px solid var(--border); overflow:hidden; }
+.faq-q {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1.3rem 0; cursor:pointer; user-select:none;
+  font-weight:600; font-size:0.97rem; gap:1rem;
+  transition:color var(--transition);
+}
+.faq-q:hover { color:var(--blue); }
+.faq-q .icon { font-size:1.1rem; transition:transform 0.2s; flex-shrink:0; }
+.faq-item.open .faq-q .icon { transform:rotate(45deg); }
+.faq-a { font-size:0.9rem; color:var(--text-muted); line-height:1.7; max-height:0; overflow:hidden; transition:max-height 0.3s ease, padding 0.3s; }
+.faq-item.open .faq-a { max-height:300px; padding-bottom:1.2rem; }
+
+.compare-table { width:100%; border-collapse:collapse; margin-top:2rem; }
+.compare-table th, .compare-table td { padding:0.9rem 1rem; text-align:left; border-bottom:1px solid var(--border); font-size:0.87rem; }
+.compare-table th { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-faint); background:var(--bg2); }
+.compare-table th:not(:first-child), .compare-table td:not(:first-child) { text-align:center; }
+.compare-table tr:hover td { background:rgba(255,255,255,0.02); }
+.check-green { color:var(--green); font-size:1rem; }
+.check-blue { color:var(--blue); font-size:1rem; }
+.cross-gray { color:var(--text-faint); }
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">NSK <span>SOFT</span> TECH</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li>
+    <li><a href="pricing.html" class="active">Pricing</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li>
+    <li class="nav-cta-wrap"><a href="contact.html" class="btn btn-primary nav-cta">Get a Free Quote</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.5rem;">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fas fa-moon" id="themeIcon"></i></button>
+    <button class="nav-mobile-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="projects.html">Projects</a><a href="pricing.html">Pricing</a>
+  <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</div>
+<main>
+
+<div class="page-hero">
+  <div class="container anim-up">
+    <div class="label">Transparent Pricing</div>
+    <h1>Simple, honest pricing.</h1>
+    <p>No hidden fees. No surprise invoices. Pick a plan that fits your business, or talk to us about a custom engagement.</p>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="billing-toggle reveal">
+      <span class="toggle-label">Monthly</span>
+      <div class="toggle-track" id="billingToggle" onclick="toggleBilling()">
+        <div class="toggle-thumb"></div>
+      </div>
+      <span class="toggle-label">Annual <span class="save-badge">Save 20%</span></span>
+    </div>
+
+    <div class="pricing-grid reveal">
+
+      <!-- STARTER -->
+      <div class="pricing-card">
+        <div class="pc-name">Starter</div>
+        <div class="pc-price"><sup>$</sup><span class="price-num" data-monthly="2,499" data-annual="1,999">2,499</span><small>/mo</small></div>
+        <div class="pc-desc">Perfect for early-stage startups and small businesses needing a reliable tech partner.</div>
+        <div class="pc-features">
+          <div class="pc-feature check">Up to 1 active project</div>
+          <div class="pc-feature check">Web or mobile development</div>
+          <div class="pc-feature check">40 hours/month dev time</div>
+          <div class="pc-feature check">Dedicated project manager</div>
+          <div class="pc-feature check">Weekly progress reports</div>
+          <div class="pc-feature check">Basic security review</div>
+          <div class="pc-feature check">Email & Slack support</div>
+          <div class="pc-feature cross">Cybersecurity audit</div>
+          <div class="pc-feature cross">24/7 monitoring</div>
+          <div class="pc-feature cross">Custom SLA</div>
+        </div>
+        <a href="contact.html" class="btn btn-outline">Get Started</a>
+      </div>
+
+      <!-- GROWTH (POPULAR) -->
+      <div class="pricing-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <div class="pc-name">Growth</div>
+        <div class="pc-price"><sup>$</sup><span class="price-num" data-monthly="5,999" data-annual="4,799">5,999</span><small>/mo</small></div>
+        <div class="pc-desc">For growing businesses that need a full-stack engineering team and accelerated delivery.</div>
+        <div class="pc-features">
+          <div class="pc-feature check">Up to 3 concurrent projects</div>
+          <div class="pc-feature check">Full-stack development team</div>
+          <div class="pc-feature check">100 hours/month dev time</div>
+          <div class="pc-feature check">Dedicated tech lead</div>
+          <div class="pc-feature check">Bi-weekly strategy reviews</div>
+          <div class="pc-feature check">Cybersecurity audit (1x/year)</div>
+          <div class="pc-feature check">Mobile & web + API</div>
+          <div class="pc-feature check">Digital marketing (basic)</div>
+          <div class="pc-feature check">Priority support (12h SLA)</div>
+          <div class="pc-feature cross">Custom SLA</div>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Start Growing →</a>
+      </div>
+
+      <!-- ENTERPRISE -->
+      <div class="pricing-card">
+        <div class="pc-name">Enterprise</div>
+        <div class="pc-price" style="font-size:2rem;padding-top:0.5rem">Custom<small style="font-size:0.85rem">/project</small></div>
+        <div class="pc-desc">For enterprises and scale-ups that need a dedicated, embedded technology team.</div>
+        <div class="pc-features">
+          <div class="pc-feature check">Unlimited projects</div>
+          <div class="pc-feature check">Dedicated team (5–15 people)</div>
+          <div class="pc-feature check">Unlimited dev hours</div>
+          <div class="pc-feature check">On-site team availability</div>
+          <div class="pc-feature check">Full cybersecurity program</div>
+          <div class="pc-feature check">Cloud architecture & DevOps</div>
+          <div class="pc-feature check">Full digital marketing suite</div>
+          <div class="pc-feature check">Custom SLA & contracts</div>
+          <div class="pc-feature check">24/7 monitoring & response</div>
+          <div class="pc-feature check">Executive business reviews</div>
+        </div>
+        <a href="contact.html" class="btn btn-outline">Contact Sales →</a>
+      </div>
+    </div>
+
+    <!-- FEATURE COMPARISON TABLE -->
+    <div style="margin-top:4rem">
+      <div class="label reveal">Full Comparison</div>
+      <h3 class="reveal" style="margin-bottom:1rem">Plan comparison</h3>
+      <div class="reveal" style="overflow-x:auto">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Starter</th>
+              <th style="color:var(--blue)">Growth</th>
+              <th>Enterprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Concurrent projects</td><td>1</td><td style="color:var(--blue)">3</td><td>Unlimited</td></tr>
+            <tr><td>Monthly dev hours</td><td>40 hrs</td><td style="color:var(--blue)">100 hrs</td><td>Unlimited</td></tr>
+            <tr><td>Web development</td><td><span class="check-green">✓</span></td><td><span class="check-green">✓</span></td><td><span class="check-green">✓</span></td></tr>
+            <tr><td>Mobile development</td><td><span class="check-green">✓</span></td><td><span class="check-green">✓</span></td><td><span class="check-green">✓</span></td></tr>
+            <tr><td>Cybersecurity audit</td><td><span class="cross-gray">—</span></td><td><span class="check-blue">1x/yr</span></td><td><span class="check-green">Full program</span></td></tr>
+            <tr><td>24/7 monitoring</td><td><span class="cross-gray">—</span></td><td><span class="cross-gray">—</span></td><td><span class="check-green">✓</span></td></tr>
+            <tr><td>Digital marketing</td><td><span class="cross-gray">—</span></td><td><span class="check-blue">Basic</span></td><td><span class="check-green">Full suite</span></td></tr>
+            <tr><td>Cloud architecture</td><td><span class="cross-gray">—</span></td><td><span class="check-blue">✓</span></td><td><span class="check-green">✓</span></td></tr>
+            <tr><td>SLA</td><td>Best effort</td><td style="color:var(--blue)">12-hour</td><td>Custom</td></tr>
+            <tr><td>Support</td><td>Email, Slack</td><td style="color:var(--blue)">Priority</td><td>Dedicated CSM</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CUSTOM SECTION -->
+    <div class="custom-section reveal">
+      <div class="label" style="justify-content:center">Need Something Specific?</div>
+      <h3>Let's build a custom plan.</h3>
+      <p>Every business is different. If none of these plans fit perfectly, let's talk. We'll create a tailored engagement model that works for your timeline, budget, and goals.</p>
+      <div class="custom-actions">
+        <a href="contact.html" class="btn btn-primary">Schedule a Call →</a>
+        <a href="contact.html" class="btn btn-outline">Get a Custom Quote</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--bg2);border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="label reveal">FAQ</div>
+    <h2 class="reveal">Got any questions?</h2>
+    <div class="faq-list reveal">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>What services does NSK Soft Tech offer?</span><span class="icon">+</span></div>
+        <div class="faq-a">NSK Soft Tech offers end-to-end digital services including web development, mobile app development, cybersecurity, digital marketing, cloud architecture, and DevOps. We work with startups, SMBs, and enterprise clients across all industries.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Which IT solution is right for my business?</span><span class="icon">+</span></div>
+        <div class="faq-a">The right solution depends on your specific goals, industry, and stage of growth. We always recommend starting with a free 30-minute discovery call where our team can understand your business and propose the most effective approach. Most clients start with a web or mobile project and expand from there.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How much do the services cost?</span><span class="icon">+</span></div>
+        <div class="faq-a">Our monthly retainer plans start at $2,499/month for the Starter tier. Project-based engagements typically range from $5,000 for smaller projects to $150,000+ for large enterprise builds. Enterprise clients get custom pricing. We always provide a detailed quote before any work begins — no surprise invoices.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How do I get started with NSK Soft Tech?</span><span class="icon">+</span></div>
+        <div class="faq-a">Simply fill out our contact form or email us at hello@nsksofttech.com. We'll schedule a free 30-minute discovery call within 24 hours. After that, we'll send you a detailed proposal with timeline, team composition, and pricing within 3 business days.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Do you sign NDAs and offer IP protection?</span><span class="icon">+</span></div>
+        <div class="faq-a">Absolutely. All client work is covered by a Non-Disclosure Agreement. All intellectual property created during the engagement belongs to you. Our contracts are clear on IP ownership, and we offer additional IP escrow arrangements for enterprise clients.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Can I scale my team up or down mid-project?</span><span class="icon">+</span></div>
+        <div class="faq-a">Yes. Flexibility is one of our key strengths. You can scale team size up or down with 2-week notice. Growth and Enterprise plan clients can adjust resource allocation monthly based on project needs and priorities.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="brand">NSK <span>SOFT</span> TECH</div><p>Transparent pricing, world-class delivery.</p><div class="social-links"><a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a><a href="#" class="social-btn"><i class="fab fa-x-twitter"></i></a><a href="#" class="social-btn"><i class="fab fa-github"></i></a></div></div>
+    <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Plans</h5><ul><li><a href="#">Starter</a></li><li><a href="#">Growth</a></li><li><a href="#">Enterprise</a></li><li><a href="contact.html">Custom Quote</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:hello@nsksofttech.com">hello@nsksofttech.com</a></li><li><a href="contact.html">Book a Call</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2024 NSK Soft Tech. All rights reserved.</span></div>
+</footer>
+<script src="main.js"></script>
+<script>
+let isAnnual = false;
+function toggleBilling() {
+  isAnnual = !isAnnual;
+  const track = document.getElementById('billingToggle');
+  track.classList.toggle('active', isAnnual);
+  document.querySelectorAll('.price-num').forEach(el => {
+    el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
+  });
+}
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>

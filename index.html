@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSK Soft Tech – Your Best IT Partners</title>
+<meta name="description" content="NSK Soft Tech delivers cutting-edge software development, cybersecurity, mobile apps, and digital marketing solutions tailored to your business.">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden;
+  padding: 8rem 0 6rem; text-align:center;
+}
+.hero-bg-img {
+  position:absolute; inset:0; z-index:0;
+}
+.hero-bg-img img {
+  width:100%; height:100%;
+  object-fit:cover; object-position:center 30%;
+  display:block;
+}
+.hero-overlay {
+  position:absolute; inset:0; z-index:1;
+  background:linear-gradient(
+    180deg,
+    rgba(4,7,15,0.80) 0%,
+    rgba(4,7,15,0.62) 50%,
+    rgba(4,7,15,0.85) 100%
+  );
+}
+.hero-grid-lines {
+  position:absolute; inset:0; z-index:2; opacity:0.025;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.7) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.7) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.hero-content {
+  position:relative; z-index:3;
+  max-width:860px; margin:0 auto;
+}
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:0.6rem;
+  background:rgba(0,148,255,0.15); border:1px solid rgba(0,148,255,0.3);
+  border-radius:100px; padding:0.4rem 1.2rem 0.4rem 0.65rem;
+  font-size:0.78rem; font-weight:600; color:#60c8ff;
+  margin-bottom:2rem; letter-spacing:0.01em;
+}
+.hero h1 {
+  font-size:clamp(3rem, 6.5vw, 5.2rem);
+  margin-bottom:1.6rem; line-height:1.04;
+}
+.hero h1 .line-white {
+  display:block;
+  background:linear-gradient(135deg, #fff 0%, rgba(218,232,255,0.92) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.hero h1 .line-blue {
+  display:block;
+  background:linear-gradient(135deg, #0094ff 0%, #00d4ff 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.hero-desc {
+  font-size:1.15rem; line-height:1.82; color:rgba(215,228,255,0.76);
+  max-width:600px; margin:0 auto 2.8rem;
+}
+.hero-actions {
+  display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;
+}
+.hero .btn-outline {
+  border-color:rgba(255,255,255,0.35) !important;
+  color:#fff !important;
+}
+.hero .btn-outline:hover {
+  border-color:#0094ff !important;
+  color:#0094ff !important;
+}
+
+/* ── TRUST STRIP ── */
+.trust-strip { padding:2rem 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.trust-inner { display:flex; align-items:center; gap:3rem; overflow:hidden; }
+.trust-label { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-faint); white-space:nowrap; flex-shrink:0; }
+.trust-logos { display:flex; gap:2.5rem; align-items:center; flex-wrap:wrap; }
+.trust-logos span { font-size:0.88rem; font-weight:600; color:var(--text-faint); white-space:nowrap; }
+
+/* ── WHY US ── */
+.why-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; margin-top:3rem; }
+.why-card { padding:1.8rem; border-radius:var(--radius); border:1px solid var(--border); background:var(--surface); transition:all var(--transition); }
+.why-card:hover { border-color:var(--border-glow); transform:translateY(-4px); box-shadow:0 12px 48px rgba(0,148,255,0.1); }
+.why-icon {
+  width:48px; height:48px; border-radius:12px; margin-bottom:1rem; display:flex;
+  align-items:center; justify-content:center;
+  background:var(--blue-glow); border:1px solid rgba(0,148,255,0.2);
+  color:var(--blue); font-size:1.15rem;
+}
+.why-card h4 { font-size:1rem; margin-bottom:0.4rem; }
+.why-card p { font-size:0.85rem; }
+
+/* ── BELIEF SECTION ── */
+.belief { background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); text-align:center; padding:6rem 0; }
+.belief h2 { font-size:clamp(2rem,4vw,3rem); margin-bottom:1rem; }
+.belief h2 em { font-style:normal; color:var(--blue); text-decoration: underline; text-underline-offset:6px; text-decoration-thickness:3px; }
+.belief p { max-width:540px; margin:0 auto 3rem; font-size:1.05rem; }
+.belief-stats { display:flex; justify-content:center; gap:5rem; flex-wrap:wrap; }
+
+/* ── SERVICES PREVIEW ── */
+.services-list { display:flex; flex-direction:column; gap:0; margin-top:3rem; }
+.service-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.5rem 0; border-bottom:1px solid var(--border);
+  cursor:pointer; transition:padding-left var(--transition);
+  gap:2rem;
+}
+.service-row:hover { padding-left:1rem; }
+.service-row:hover .service-arrow { color:var(--blue); }
+.service-row-left { display:flex; align-items:center; gap:1.2rem; }
+.service-row-num { font-size:0.78rem; font-weight:700; color:var(--text-faint); width:24px; flex-shrink:0; }
+.service-row-name { font-family:'Manrope',sans-serif; font-size:1.4rem; font-weight:700; }
+.service-row-desc { font-size:0.87rem; color:var(--text-muted); max-width:380px; }
+.service-thumb { width:80px; height:52px; border-radius:8px; overflow:hidden; flex-shrink:0; }
+.service-thumb img { width:100%; height:100%; object-fit:cover; }
+.service-arrow { color:var(--text-faint); font-size:1.2rem; transition:color var(--transition); }
+
+/* ── PROJECTS PREVIEW ── */
+.projects-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:3rem; }
+.project-card {
+  border-radius:var(--radius); overflow:hidden;
+  background:var(--surface); border:1px solid var(--border);
+  transition:all var(--transition);
+  text-decoration:none; display:block;
+}
+.project-card:hover { border-color:var(--border-glow); transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,0,0,0.3); }
+.project-thumb {
+  height:200px; width:100%; overflow:hidden;
+  background:linear-gradient(135deg,var(--surface2),var(--bg));
+  display:flex; align-items:center; justify-content:center;
+  font-size:4rem; position:relative;
+}
+.project-thumb img { width:100%; height:100%; object-fit:cover; object-position:top; }
+.project-thumb-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom, transparent 40%, rgba(8,13,26,0.9));
+}
+.project-body { padding:1.4rem; }
+.project-tag { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--blue); margin-bottom:0.4rem; }
+.project-name { font-family:'Manrope',sans-serif; font-size:1.15rem; font-weight:700; margin-bottom:0.4rem; }
+.project-desc { font-size:0.85rem; color:var(--text-muted); line-height:1.6; }
+
+/* ── TESTIMONIALS ── */
+.testimonials-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:3rem; }
+.testi-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.8rem; }
+.testi-quote { font-size:1rem; color:var(--text); line-height:1.7; margin-bottom:1.2rem; font-style:italic; }
+.testi-author { display:flex; align-items:center; gap:0.8rem; }
+.testi-avatar { width:38px; height:38px; border-radius:50%; background:var(--blue-glow); border:1.5px solid rgba(0,148,255,0.3); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9rem; color:var(--blue); flex-shrink:0; }
+.testi-name { font-weight:600; font-size:0.9rem; }
+.testi-role { font-size:0.75rem; color:var(--text-faint); }
+
+/* ── CTA ── */
+.cta-section { text-align:center; padding:8rem 0; position:relative; overflow:hidden; }
+.cta-bg { position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 50% 50%, rgba(0,148,255,0.07) 0%, transparent 70%); }
+.cta-section h2 { margin-bottom:1rem; }
+.cta-section p { max-width:480px; margin:0 auto 2rem; }
+.cta-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+@media(max-width:640px){
+  .hero { padding:6rem 0 4rem; }
+  .hero h1 { font-size:2.4rem; }
+  .hero-desc { font-size:1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">NSK <span>SOFT</span> TECH</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li class="nav-cta-wrap"><a href="contact.html" class="btn btn-primary nav-cta">Get a Free Quote</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.5rem;">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark / light mode">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+    <button class="nav-mobile-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="projects.html">Projects</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="btn btn-primary" style="margin-top:0.5rem">Get a Free Quote</a>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Full-screen background image -->
+  <div class="hero-bg-img">
+    <img
+      src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=85&fit=crop"
+      alt=""
+      aria-hidden="true"
+    />
+  </div>
+  <!-- Dark overlay -->
+  <div class="hero-overlay"></div>
+  <!-- Subtle grid lines -->
+  <div class="hero-grid-lines"></div>
+
+  <div class="container">
+    <div class="hero-content anim-up">
+      <div class="hero-eyebrow">
+        <i class="fas fa-circle" style="font-size:6px;animation:pulse 2s infinite;color:#0094ff;"></i>
+        Trusted by 500+ businesses worldwide
+      </div>
+      <h1>
+        <span class="line-white">We Build Digital</span>
+        <span class="line-blue">Solutions That Scale.</span>
+      </h1>
+      <p class="hero-desc">From custom software to cybersecurity — we craft tailored digital experiences that transform businesses and accelerate growth.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-primary">Start a Project <i class="fas fa-arrow-right"></i></a>
+        <a href="services.html" class="btn btn-outline">Explore Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="container">
+    <div class="trust-inner">
+      <span class="trust-label">Trusted by</span>
+      <div class="trust-logos">
+        <span>SAMSUNG</span>
+        <span>Google</span>
+        <span>Amazon</span>
+        <span>Mika Medika</span>
+        <span>SONY</span>
+        <span>Tributoo</span>
+        <span>Captana</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY CHOOSE US -->
+<section>
+  <div class="container">
+    <div class="reveal">
+      <div class="label">Why Choose Us</div>
+      <h2>Built different.<br>Delivered better.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="why-icon"><i class="fas fa-bullseye"></i></span>
+        <h4>Deep Expertise</h4>
+        <p>A team of seasoned engineers and designers with 10+ years of combined industry experience in enterprise software.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon"><i class="fas fa-microchip"></i></span>
+        <h4>Technology-First</h4>
+        <p>We stay ahead with the latest in AI, cloud, and cybersecurity — ensuring you always get cutting-edge solutions.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon"><i class="fas fa-lightbulb"></i></span>
+        <h4>Problem Solvers</h4>
+        <p>We take a product-thinking approach, deeply understanding your business before writing a single line of code.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="why-icon"><i class="fas fa-chart-line"></i></span>
+        <h4>Proven Results</h4>
+        <p>500+ successful projects across 35+ countries. Our track record speaks louder than our pitch deck.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BELIEF SECTION -->
+<div class="belief">
+  <div class="container">
+    <div class="label" style="justify-content:center">Our Vision</div>
+    <h2 class="reveal">We believe that technology<br>can <em>change</em> the world.</h2>
+    <p class="reveal">That's why we're committed to delivering innovative IT solutions to businesses of all sizes. Our team is dedicated to helping you achieve your goals and thrive in a rapidly evolving digital landscape.</p>
+    <div class="belief-stats reveal">
+      <div><div class="stat-num">500+</div><div class="stat-label">Successful Projects</div></div>
+      <div><div class="stat-num">98%</div><div class="stat-label">Satisfied Clients</div></div>
+      <div><div class="stat-num">35+</div><div class="stat-label">Active Countries</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES PREVIEW -->
+<section>
+  <div class="container">
+    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div class="label">What We Do</div>
+        <h2>End-to-end digital<br>services that scale.</h2>
+      </div>
+      <a href="services.html" class="btn btn-outline">All Services <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="services-list reveal">
+      <div class="service-row" onclick="location.href='services.html'">
+        <div class="service-row-left">
+          <span class="service-row-num">01</span>
+          <div>
+            <div class="service-row-name">Web Development</div>
+            <div class="service-row-desc">High-performance web apps, custom CMSs, e-commerce platforms, and enterprise portals.</div>
+          </div>
+        </div>
+        <span class="service-arrow"><i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="service-row" onclick="location.href='services.html'">
+        <div class="service-row-left">
+          <span class="service-row-num">02</span>
+          <div>
+            <div class="service-row-name">Mobile Development</div>
+            <div class="service-row-desc">Native iOS & Android apps and cross-platform React Native solutions that users love.</div>
+          </div>
+        </div>
+        <span class="service-arrow"><i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="service-row" onclick="location.href='services.html'">
+        <div class="service-row-left">
+          <span class="service-row-num">03</span>
+          <div>
+            <div class="service-row-name">Cybersecurity</div>
+            <div class="service-row-desc">Advanced threat protection, penetration testing, compliance audits, and 24/7 monitoring.</div>
+          </div>
+        </div>
+        <span class="service-arrow"><i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="service-row" onclick="location.href='services.html'">
+        <div class="service-row-left">
+          <span class="service-row-num">04</span>
+          <div>
+            <div class="service-row-name">Digital Marketing</div>
+            <div class="service-row-desc">Data-driven SEO, paid media, social campaigns, and analytics that deliver measurable ROI.</div>
+          </div>
+        </div>
+        <span class="service-arrow"><i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="service-row" onclick="location.href='services.html'">
+        <div class="service-row-left">
+          <span class="service-row-num">05</span>
+          <div>
+            <div class="service-row-name">Cloud & DevOps</div>
+            <div class="service-row-desc">AWS, Azure, GCP architecture, CI/CD pipelines, containerization, and cloud migration.</div>
+          </div>
+        </div>
+        <span class="service-arrow"><i class="fas fa-arrow-right"></i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS PREVIEW -->
+<section style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div class="label">Our Work</div>
+        <h2>Projects we're<br>proud of.</h2>
+      </div>
+      <a href="projects.html" class="btn btn-outline">All Projects <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="projects-grid">
+      <a href="projects.html#captana" class="project-card reveal">
+        <div class="project-thumb" style="background:#06101e;">
+          <img src="images/Captana Übersicht.png" alt="Captana AI shelf monitoring" style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
+          <div class="project-thumb-overlay"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-tag">Retail · IoT · AI</div>
+          <div class="project-name">Captana</div>
+          <div class="project-desc">AI-powered shelf monitoring platform using computer vision and IoT sensors to improve on-shelf availability for global retailers.</div>
+          <div style="margin-top:0.8rem;display:flex;gap:0.4rem;flex-wrap:wrap">
+            <span class="tech-pill">Computer Vision</span>
+            <span class="tech-pill">IoT</span>
+            <span class="tech-pill">Cloud</span>
+          </div>
+        </div>
+      </a>
+      <a href="projects.html#tributoo" class="project-card reveal">
+        <div class="project-thumb" style="background:#0d0f1a;">
+          <img src="images/HeroSection.png" alt="Tributoo digital memorial platform" style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+          <div class="project-thumb-overlay"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-tag">SaaS · Memorial · Platform</div>
+          <div class="project-name">Tributoo</div>
+          <div class="project-desc">A digital memorial platform used worldwide, helping 10,000+ families create beautiful, encrypted online tribute pages with QR grave plaques.</div>
+          <div style="margin-top:0.8rem;display:flex;gap:0.4rem;flex-wrap:wrap">
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">AWS</span>
+          </div>
+        </div>
+      </a>
+      <a href="projects.html#kayconcept" class="project-card reveal">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#0f1c0a,#152a0f)">
+          <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&q=80&fit=crop" alt="KayConcept design agency" style="width:100%;height:100%;object-fit:cover;" />
+          <div class="project-thumb-overlay"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-tag">Design · Branding · Agency</div>
+          <div class="project-name">KayConcept</div>
+          <div class="project-desc">A digital agency platform delivering UI/UX design, branding assets, and automation workflows for ambitious businesses.</div>
+          <div style="margin-top:0.8rem;display:flex;gap:0.4rem;flex-wrap:wrap">
+            <span class="tech-pill">UI/UX</span>
+            <span class="tech-pill">Webflow</span>
+            <span class="tech-pill">AI Automation</span>
+          </div>
+        </div>
+      </a>
+      <a href="projects.html#tablify" class="project-card reveal">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#1a0c00,#2d1500)">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80&fit=crop" alt="Tablify restaurant management" style="width:100%;height:100%;object-fit:cover;" />
+          <div class="project-thumb-overlay"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-tag">SaaS · Restaurant · Management</div>
+          <div class="project-name">Tablify</div>
+          <div class="project-desc">A comprehensive restaurant SaaS platform — online orders, table reservations, kitchen management, and AI-powered analytics.</div>
+          <div style="margin-top:0.8rem;display:flex;gap:0.4rem;flex-wrap:wrap">
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">AI Analytics</span>
+          </div>
+        </div>
+      </a>
+      <a href="projects.html#vivontic" class="project-card reveal">
+        <div class="project-thumb" style="background:#040d18;">
+          <img src="images/vivontic-image.png" alt="Vivontic digital platform" style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
+          <div class="project-thumb-overlay"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-tag">SaaS · Digital Platform</div>
+          <div class="project-name">Vivontic</div>
+          <div class="project-desc">A full-featured digital platform built end-to-end — from architecture to production — focused on performance, scalability, and exceptional UX.</div>
+          <div style="margin-top:0.8rem;display:flex;gap:0.4rem;flex-wrap:wrap">
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">AWS</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="container">
+    <div class="label reveal">Client Stories</div>
+    <h2 class="reveal">What our clients say.</h2>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote">"The cybersecurity solution they built gave us peace of mind. NSK Soft Tech took the time to understand our needs and created solutions that protect our sensitive information and ensure compliance with industry regulations."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">T</div>
+          <div><div class="testi-name">Tom Aldmon</div><div class="testi-role">CTO, FinanceCore</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-quote">"We were struggling to keep up with the demands of our business, but NSK Soft Tech's software development team helped us streamline operations and improve efficiency — saving us time and money."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">J</div>
+          <div><div class="testi-name">Jennifer Park</div><div class="testi-role">Operations Director, Mika Medika</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="label reveal" style="justify-content:center">Let's Build Together</div>
+    <h2 class="reveal">Need IT Solutions?<br>Let's start now.</h2>
+    <p class="reveal">Book a free 30-minute discovery call. No commitment, just a conversation about how we can help your business grow.</p>
+    <div class="cta-actions reveal">
+      <a href="contact.html" class="btn btn-primary">Get Free Consultation <i class="fas fa-arrow-right"></i></a>
+      <a href="pricing.html" class="btn btn-outline">View Pricing</a>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand">NSK <span>SOFT</span> TECH</div>
+      <p>From custom software development to cybersecurity — we build tailored digital solutions for businesses of all sizes worldwide.</p>
+      <div class="social-links">
+        <a href="#" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social-btn" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" class="social-btn" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="services.html">Web Development</a></li>
+        <li><a href="services.html">Mobile Apps</a></li>
+        <li><a href="services.html">Cybersecurity</a></li>
+        <li><a href="services.html">Digital Marketing</a></li>
+        <li><a href="services.html">Cloud & DevOps</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="mailto:hello@nsksofttech.com">hello@nsksofttech.com</a></li>
+        <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 NSK Soft Tech. All rights reserved.</span>
+    <span>Built with ❤️ for innovation</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

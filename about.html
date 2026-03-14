@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us – NSK Soft Tech</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.page-hero { padding:7rem 0 4rem; background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,100,255,0.08) 0%, transparent 60%); border-bottom:1px solid var(--border); text-align:center; }
+.page-hero .label { justify-content:center; }
+.page-hero h1 { margin-bottom:1rem; }
+.page-hero p { max-width:580px; margin:0 auto; font-size:1.1rem; }
+
+.story-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+.story-img {
+  border-radius:var(--radius); overflow:hidden;
+  background:linear-gradient(135deg,var(--surface),var(--bg2));
+  border:1px solid var(--border); aspect-ratio:4/3;
+  display:flex; align-items:center; justify-content:center; font-size:6rem;
+  position:relative;
+}
+.story-img::after {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 30% 30%, rgba(0,148,255,0.08) 0%, transparent 60%);
+}
+
+.values-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; }
+.value-card { border:1px solid var(--border); border-radius:var(--radius); padding:2rem; background:var(--surface); text-align:center; }
+.value-icon { font-size:2.5rem; margin-bottom:1rem; display:block; }
+.value-card h4 { margin-bottom:0.5rem; }
+
+.team-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-top:3rem; }
+.team-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; text-align:center; transition:all var(--transition); }
+.team-card:hover { border-color:var(--border-glow); transform:translateY(-3px); }
+.team-avatar { width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg,var(--blue-glow),rgba(0,212,255,0.1)); border:2px solid rgba(0,148,255,0.2); margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:1.8rem; font-weight:700; color:var(--blue); }
+.team-name { font-weight:700; font-size:0.95rem; margin-bottom:0.2rem; }
+.team-role { font-size:0.78rem; color:var(--blue); font-weight:600; }
+.team-bio { font-size:0.82rem; color:var(--text-muted); margin-top:0.5rem; line-height:1.55; }
+
+.timeline { margin-top:3rem; position:relative; }
+.timeline::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:1px; background:var(--border); transform:translateX(-50%); }
+.timeline-item { display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-bottom:3rem; align-items:center; }
+.timeline-item:nth-child(even) .tl-content { order:2; }
+.timeline-item:nth-child(even) .tl-year { order:1; text-align:right; }
+.tl-year { font-family:'Manrope',sans-serif; font-size:2.5rem; font-weight:800; color:var(--blue); opacity:0.3; }
+.tl-content { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem; }
+.tl-content h4 { margin-bottom:0.4rem; }
+.tl-content p { font-size:0.87rem; }
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">NSK <span>SOFT</span> TECH</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li class="nav-cta-wrap"><a href="contact.html" class="btn btn-primary nav-cta">Get a Free Quote</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.5rem;">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark / light mode"><i class="fas fa-moon" id="themeIcon"></i></button>
+    <button class="nav-mobile-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="projects.html">Projects</a><a href="pricing.html">Pricing</a>
+  <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</div>
+
+<main>
+<div class="page-hero">
+  <div class="container anim-up">
+    <div class="label">Who We Are</div>
+    <h1>We are NSK Soft Tech.</h1>
+    <p>A team of passionate engineers, designers, and strategists on a mission to help businesses harness the power of technology.</p>
+  </div>
+</div>
+
+<!-- STORY -->
+<section>
+  <div class="container">
+    <div class="story-grid">
+      <div class="reveal">
+        <div class="label">Our Story</div>
+        <h2>Born from a belief that technology should empower.</h2>
+        <p style="margin:1.2rem 0">Founded with a singular purpose — to make world-class IT solutions accessible to businesses of all sizes. We started as a small web development shop and have grown into a full-spectrum technology partner serving clients across 35+ countries.</p>
+        <p>We don't just write code. We understand your business, study your users, challenge assumptions, and build solutions that create real competitive advantage. Every project is a long-term partnership.</p>
+        <div style="display:flex;gap:1.5rem;margin-top:2rem;flex-wrap:wrap">
+          <div><div class="stat-num">10+</div><div class="stat-label">Years Experience</div></div>
+          <div><div class="stat-num">80+</div><div class="stat-label">Team Members</div></div>
+          <div><div class="stat-num">35+</div><div class="stat-label">Countries</div></div>
+        </div>
+      </div>
+      <div class="story-img reveal">🚀</div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION & VALUES -->
+<section style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="label reveal">Our Values</div>
+    <h2 class="reveal">Principles that guide<br>everything we build.</h2>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <span class="value-icon">🎯</span>
+        <h4>Client Obsession</h4>
+        <p>We measure our success by your success. Every decision is made with your business outcomes in mind.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-icon">🔬</span>
+        <h4>Engineering Excellence</h4>
+        <p>Clean code, rigorous testing, robust architecture. We take pride in the craft of building software that lasts.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-icon">🤝</span>
+        <h4>Radical Transparency</h4>
+        <p>No surprises. Clear communication, honest timelines, and proactive problem-solving from day one.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-icon">⚡</span>
+        <h4>Move with Purpose</h4>
+        <p>We move fast — but never recklessly. Speed with intention, shipping working software that delivers value.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-icon">🌍</span>
+        <h4>Global Mindset</h4>
+        <p>With clients in 35+ countries, we understand diverse markets, regulations, and user expectations.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-icon">🛡️</span>
+        <h4>Security First</h4>
+        <p>Security is not a feature — it's a foundation. Every system we build has protection built in from the ground up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section>
+  <div class="container">
+    <div class="label reveal">The Team</div>
+    <h2 class="reveal">People who make it happen.</h2>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar">N</div>
+        <div class="team-name">Naresh Kumar</div>
+        <div class="team-role">Founder & CEO</div>
+        <div class="team-bio">15+ years building scalable software. Passionate about startups and enterprise digital transformation.</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">S</div>
+        <div class="team-name">Sita Reddy</div>
+        <div class="team-role">CTO</div>
+        <div class="team-bio">Former Google engineer. Expert in distributed systems, cloud architecture, and AI integration.</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">K</div>
+        <div class="team-name">Kiran Mehta</div>
+        <div class="team-role">Head of Design</div>
+        <div class="team-bio">Award-winning UX designer with a philosophy that great design is invisible — until it's absent.</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">P</div>
+        <div class="team-name">Priya Sharma</div>
+        <div class="team-role">Head of Security</div>
+        <div class="team-bio">CISSP certified. Led security programs for Fortune 500 companies across finance and healthcare.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section style="background:var(--bg2);border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="label reveal">Our Journey</div>
+    <h2 class="reveal">How we got here.</h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="tl-year">2014</div>
+        <div class="tl-content"><h4>Founded in Hyderabad</h4><p>Started as a 3-person web development boutique focused on SMB clients in the Indian market.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-content"><h4>First Enterprise Client</h4><p>Landed our first Fortune 500 engagement — a cybersecurity audit for a global financial services firm.</p></div>
+        <div class="tl-year" style="text-align:left">2017</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-year">2019</div>
+        <div class="tl-content"><h4>Global Expansion</h4><p>Opened offices in Europe and North America. Grew the team to 40+ people across 3 continents.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-content"><h4>Product Studio Launch</h4><p>Launched our product studio — building Captana, Tributoo, KayConcept, and Tablify as flagship products.</p></div>
+        <div class="tl-year" style="text-align:left">2022</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-year">2024</div>
+        <div class="tl-content"><h4>500+ Projects Milestone</h4><p>Reached 500 successful project deliveries across 35 countries with a 98% client satisfaction rate.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="brand">NSK <span>SOFT</span> TECH</div><p>Transforming businesses through technology — one project at a time.</p><div class="social-links"><a href="#" class="social-btn"><i class="fab fa-linkedin-in"></i></a><a href="#" class="social-btn"><i class="fab fa-x-twitter"></i></a><a href="#" class="social-btn"><i class="fab fa-github"></i></a></div></div>
+    <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html">Web Development</a></li><li><a href="services.html">Mobile Apps</a></li><li><a href="services.html">Cybersecurity</a></li><li><a href="services.html">Cloud & DevOps</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:hello@nsksofttech.com">hello@nsksofttech.com</a></li><li><a href="tel:+1234567890">+1 (234) 567-890</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2024 NSK Soft Tech. All rights reserved.</span><span>Built with ❤️ for innovation</span></div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
